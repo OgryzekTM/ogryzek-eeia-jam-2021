@@ -148,14 +148,30 @@ end
 [
   'Ubrania',
   'Książki',
-  'Okulary'
+  'Okulary',
+  'Jedzenie długoterminowe',
+  'Zabawki'
 ].each do |name|
   LocationCategory.find_or_create_by(name: name)
 end
 
 WasteCollectionPoint.find_or_create_by(
-  name: 'Skup złomu',
-  x: '12.3',
-  y: '-99.1',
-  location_category: LocationCategory.find_by(name: 'Elektrośmieci')
+  name: 'Przetwórnia nawozów',
+  x: '51.752220975062436',
+  y: '19.42542669193397',
+  location_category: LocationCategory.find_by(name: 'Bioodpady')
+)
+
+WasteCollectionPoint.find_or_create_by(
+  name: 'Dom Dziecka nr 14',
+  x: '51.76525089378851',
+  y: '19.450070746223037',
+  location_category: LocationCategory.find_by(name: 'Zabawki')
+)
+
+WasteCollectionPoint.find_or_create_by(
+  name: 'Łódzki Oddział Czerwonego Krzyża',
+  x: '51.762919485527604',
+  y: '19.47879992174048',
+  location_category: LocationCategory.find_by(name: 'Ubrania')
 )
