@@ -1,7 +1,28 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+[
+  'Zmieszane',
+  'Papier',
+  'Bioodpady',
+  'Metale i tworzywa sztuczne',
+  'Gabaryty',
+  'Szkło',
+  'Zielone',
+  'Odpady zmieszane',
+  'Elektrośmieci',
+  'Leki',
+  'Baterie i akumulatory',
+  'PSZOK',
+  'Odpady remontowe i inne',
+  'Odpady do indywidualnego przekazania uprawnionej firmie'
+].each do |name|
+  WasteCategory.find_or_create_by(name: name)
+end
+
+[
+  'Papier',
+ 'Chusteczki'
+].each do |name|
+  category = WasteCategory.find_by(name: 'Papier')
+  WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
+end
