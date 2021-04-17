@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateWasteCategoryProductSamples < ActiveRecord::Migration[6.1]
   def change
     create_table :waste_category_product_samples do |t|
