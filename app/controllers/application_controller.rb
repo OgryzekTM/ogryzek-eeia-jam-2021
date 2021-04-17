@@ -4,13 +4,12 @@ class ApplicationController < ActionController::API
   private
 
   def serialize(collection, adapter = :json, serializer: nil)
-    if collection.is_a?(Array)
-      serializer = collection.first.class
-    else
-      serializer = collection.class
-    end
+    serializer ||= if collection.is_a?(Array)
+                     collection.first.class
+                   else
+                     collection.class
+                   end
     return [] if collection.is_a?(Array) && collection&.empty?
-
 
     ActiveModelSerializers::SerializableResource.new(
       collection,
