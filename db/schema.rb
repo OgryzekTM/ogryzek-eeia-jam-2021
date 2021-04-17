@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_185038) do
+ActiveRecord::Schema.define(version: 2021_04_17_205154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "location_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "waste_categories", force: :cascade do |t|
     t.string "name", null: false
@@ -28,8 +35,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_185038) do
     t.string "y", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "waste_category_id"
-    t.index ["waste_category_id"], name: "index_waste_collection_points_on_waste_category_id"
+    t.bigint "location_category_id"
+    t.index ["location_category_id"], name: "index_waste_collection_points_on_location_category_id"
   end
 
   create_table "waste_keywords", force: :cascade do |t|

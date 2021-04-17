@@ -141,9 +141,21 @@ end
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
 end
 
+WasteCategory.all.pluck(:name).each do |waste_category_name|
+  LocationCategory.find_or_create_by(name: waste_category_name)
+end
+
+[
+  'Ubrania',
+  'Książki',
+  'Okulary'
+].each do |name|
+  LocationCategory.find_or_create_by(name: name)
+end
+
 WasteCollectionPoint.find_or_create_by(
   name: 'Skup złomu',
   x: '12.3',
   y: '-99.1',
-  waste_category: WasteCategory.find_by(name: 'Elektrośmieci')
+  location_category: LocationCategory.find_by(name: 'Elektrośmieci')
 )

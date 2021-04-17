@@ -9,7 +9,6 @@ class WasteCategoryController < ApplicationController
     determine_category_by_barcode(params[:code])
     render json: serialize(@waste_category), status: :ok
   end
-
   private
 
   def determine_category_by_barcode(barcode)

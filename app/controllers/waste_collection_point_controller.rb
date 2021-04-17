@@ -11,6 +11,6 @@ class WasteCollectionPointController < ApplicationController
   private
 
   def filter_params(params)
-    params.slice(:waste_category_id)
+    params.slice(:location_category_id)
   end
 end

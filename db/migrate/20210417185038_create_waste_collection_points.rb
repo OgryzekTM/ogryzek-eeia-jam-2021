@@ -9,6 +9,5 @@ class CreateWasteCollectionPoints < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_reference :waste_collection_points, :waste_category, index: true
   end
 end
