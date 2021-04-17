@@ -1,4 +1,4 @@
-waste_categories_names = [
+[
   'Zmieszane',
   'Papier',
   'Bioodpady',
