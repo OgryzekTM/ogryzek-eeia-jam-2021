@@ -5,6 +5,6 @@ class WasteCollectionPoint < ApplicationRecord
 
   belongs_to :location_category
 
-  validates :name, :x, :y, presence: true
+  validates :name, :x, :y, :location_category_id, presence: true
   validates :name, uniqueness: true
 end
