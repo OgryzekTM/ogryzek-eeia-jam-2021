@@ -3,7 +3,7 @@
 class WasteCollectionPoint < ApplicationRecord
   include Filterable
 
-  belongs_to :waste_category
+  belongs_to :location_category
 
   validates :name, :x, :y, presence: true
   validates :name, uniqueness: true

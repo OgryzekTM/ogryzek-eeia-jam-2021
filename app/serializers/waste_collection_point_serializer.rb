@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class WasteCollectionPointSerializer < ActiveModel::Serializer
-  attributes :id, :name, :x, :y, :waste_category
+  attributes :id, :name, :x, :y, :location_category
 
-  def waste_category
+  def location_category
     {
-      name: object.waste_category&.name,
-      description: object.waste_category&.description
+      id: object.location_category&.id,
+      name: object.location_category&.name,
+      description: object.location_category&.description
     }
   end
 end
