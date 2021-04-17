@@ -5,9 +5,9 @@ class ApplicationController < ActionController::API
 
   def serialize(collection, adapter = :json, serializer: nil)
     serializer ||= if collection.is_a?(Array)
-                     collection.first.class
+                     "#{collection.first.class.name}Serializer".constantize
                    else
-                     collection.class
+                     "#{collection.class.name}Serializer".constantize
                    end
     return [] if collection.is_a?(Array) && collection&.empty?
 
