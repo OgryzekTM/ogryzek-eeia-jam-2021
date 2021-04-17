@@ -24,6 +24,9 @@ class WasteCategoryService
         end
       end
     end
-    calculations[:category]
+    {
+      category: calculations[:category],
+      product: @data['name']
+    }
   end
 end
