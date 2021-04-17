@@ -8,7 +8,8 @@ import (
 )
 
 type RequestResponse struct {
-	Name string `json:"name"`
+	Name       string     `json:"name"`
+	Categories []Category `json:"categoryDetails"`
 }
 
 type ErrorResponse struct {
@@ -33,7 +34,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
-	name, err := EANToName(ean)
+	eanDecoded, err := EANDecoder(ean)
 	if err == IncorrectCodeError {
 		w.WriteHeader(http.StatusBadRequest)
 		response := ErrorResponse{Message: "No such code in database"}
@@ -53,7 +54,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	response := RequestResponse{Name: name}
+	response := RequestResponse{Name: eanDecoded.Name, Categories: eanDecoded.Categories}
 	marshal, err := json.Marshal(response)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

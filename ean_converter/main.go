@@ -14,38 +14,42 @@ var (
 	IncorrectCodeError = errors.New("incorrect EAN code")
 )
 
-type GS1ApiResponse struct {
-	Name string `json:"name"`
+type Category struct {
+	Text string `json:"text"`
+	Code string `json:"code"`
 }
 
-func EANToName(ean string) (string, error) {
+type GS1ApiResponse struct {
+	Name       string     `json:"name"`
+	Categories []Category `json:"categoryDetails"`
+}
+
+func EANDecoder(ean string) (*GS1ApiResponse, error) {
 	request, err := http.NewRequest("GET", "https://www.eprodukty.gs1.pl/api/v1/products/get_products/"+ean+"/", nil)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	res, err := http.DefaultClient.Do(request)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	defer res.Body.Close()
 
 	var response GS1ApiResponse
 	err = json.NewDecoder(res.Body).Decode(&response)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	// TODO: provide more info, handle errors better
 	if response.Name == "" {
 		// what the heck
 		if !strings.HasPrefix(ean, "0") {
-			return EANToName("0" + ean)
+			return EANDecoder("0" + ean)
 		}
-		return "", IncorrectCodeError
+		return nil, IncorrectCodeError
 	}
-	return response.Name, nil
+	return &response, nil
 }
-
-
 
 func main() {
 	r := mux.NewRouter()
