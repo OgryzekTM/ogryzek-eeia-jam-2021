@@ -7,12 +7,12 @@ class EanCodeService
     @code = code
   end
 
-  def get_details
-    url = URI.parse("http://www.example.com/#{@code}")
+  def details
+    url = URI.parse("http://skraper.dajcie.dla.mnie.sex.pl/#{@code}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) do |http|
       http.request(req)
     end
-    puts res.body
+    JSON.parse(res.body)
   end
 end

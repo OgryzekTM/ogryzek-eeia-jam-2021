@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class WasteCategory < ApplicationRecord
-  has_many :waste_keywords
+class WasteKeyword < ApplicationRecord
+  has_one :waste_category
 
   validates :name, presence: true
   validates :name, uniqueness: true

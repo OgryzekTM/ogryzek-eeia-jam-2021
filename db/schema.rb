@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_141422) do
+ActiveRecord::Schema.define(version: 2021_04_17_174928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 2021_04_17_141422) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "waste_keywords", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "waste_category_id"
+    t.index ["waste_category_id"], name: "index_waste_keywords_on_waste_category_id"
   end
 
 end

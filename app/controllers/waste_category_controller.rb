@@ -2,21 +2,16 @@
 
 class WasteCategoryController < ApplicationController
   def index
-    barcode = params[:barcode]
-    name = determine_name_by_barcode(barcode)
-    set_waste_category(name)
+    determine_category_by_barcode(params[:barcode])
 
     render json: serialize(@waste_category), status: :ok
   end
 
   private
 
-  def determine_name_by_barcode(barcode)
+  def determine_category_by_barcode(barcode)
+    details = EanCodeService.new(barcode).details
     # todo: implement
-  end
-
-  def set_waste_category(name)
     @waste_category = WasteCategory.first
-    # todo: determine category service
   end
 end
