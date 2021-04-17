@@ -3,7 +3,7 @@
 class CreateWasteProducts < ActiveRecord::Migration[6.1]
   def change
     create_table :waste_products do |t|
-      t.string :name
+      t.string :name, unique: true
       t.string :description
       t.string :barcode
 
