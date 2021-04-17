@@ -8,6 +8,5 @@ class CreateWasteCollectionPoints < ActiveRecord::Migration[6.1]
       t.string :y, null: false
       t.timestamps
     end
-
   end
 end
