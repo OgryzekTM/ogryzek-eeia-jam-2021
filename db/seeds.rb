@@ -57,7 +57,9 @@ end
   'plastik',
   'zakrętka',
   'tetrapak',
-  'sok'
+  'sok',
+  'śruba',
+  'gwóźdź'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Metale i tworzywa sztuczne')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
