@@ -1,0 +1,2 @@
+class WasteCategoryProductSample < ApplicationRecord
+end
