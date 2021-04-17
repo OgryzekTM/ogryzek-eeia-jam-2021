@@ -7,12 +7,23 @@ class WasteCategoryController < ApplicationController
 
   def show
     determine_category_by_barcode(params[:code])
+    determine_category_by_name(params[:name])
     render json: serialize(@waste_category), status: :ok
   end
+
   private
 
+  def determine_category_by_name(name)
+    if name.present?
+      details = { 'name' => name }
+      @waste_category = WasteCategoryService.new(details).determine
+    end
+  end
+
   def determine_category_by_barcode(barcode)
-    details = EanCodeService.new(barcode).details
-    @waste_category = WasteCategoryService.new(details).determine
+    if barcode.present?
+      details = EanCodeService.new(barcode).details
+      @waste_category = WasteCategoryService.new(details).determine
+    end
   end
 end
