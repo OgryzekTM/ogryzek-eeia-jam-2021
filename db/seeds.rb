@@ -20,14 +20,32 @@ end
   'Papier',
   'Chusteczki',
   'karton',
-  ''
+  'gazeta',
+  'czasopismo',
+  'ulotka',
+  'zeszyt'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Papier')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
 end
 
 [
-  'owoce'
+  'owoce',
+  'jabłko',
+  'gruszka',
+  'banan',
+  'winogrona',
+  'brzoskwinia',
+  'ananas',
+  'warzywo',
+  'ziemniak',
+  'kartofel',
+  'herbata',
+  'kawa',
+  'kwiat',
+  'brokuł',
+  'ogórek',
+  'pomidor'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Bioodpady')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
@@ -37,7 +55,9 @@ end
   'puszka',
   'metal',
   'plastik',
-  
+  'zakrętka',
+  'tetrapak',
+  'sok'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Metale i tworzywa sztuczne')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
@@ -45,7 +65,11 @@ end
 
 [
   'szafa',
-  '',
+  'stół',
+  'komoda',
+  'meblościanka',
+  'wersalka',
+  'fotel'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Gabaryty')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
@@ -54,7 +78,8 @@ end
 [
   'słój',
   'słoik',
-  'szklany'
+  'szklany',
+  'kosmetyk'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Szkło')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
@@ -83,23 +108,27 @@ end
 [
   'xanax',
   'rutinoscorbin',
-  'ibuprom'
+  'ibuprom',
+  'apap'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Leki')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
 end
 
 [
-  'baterie',
+  'bateria',
   'AA',
-  'AAA'
+  'AAA',
+  'akumulator'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Baterie i akumulatory')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
 end
 
 [
-  ''
+  'farba',
+  'tynk',
+  'gips'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Odpady remontowe i inne')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
