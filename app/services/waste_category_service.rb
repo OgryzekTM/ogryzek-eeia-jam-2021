@@ -4,7 +4,7 @@ class WasteCategoryService
   def initialize(waste_product_hash)
     @data = waste_product_hash
     @keywords = [@data['name']]
-    @data['categoryDetails'].pluck('text').each do |details|
+    @data['categoryDetails']&.pluck('text')&.each do |details|
       @keywords.append(details)
     end
   end
@@ -16,17 +16,17 @@ class WasteCategoryService
       category: default_category
     }
     @keywords.each do |keyword|
-      categories = WasteCategory.all.sort do |a, b|
-        Levenshtein.distance(a.name, keyword) <=> Levenshtein.distance(b.name, keyword)
+      WasteKeyword.all.each do |key|
+        calc_min = Levenshtein.distance(key.name, keyword)
+        if calc_min < calculations[:min_levenshtein]
+          calculations[:min_levenshtein] = calc_min
+          calculations[:category] = key.waste_category
+        end
       end
-      calc_min = Levenshtein.distance(categories.first.name, keyword)
-      next unless calc_min <= calculations[:min_levenshtein]
-
-      calculations = {
-        min_levenshtein: calc_min,
-        category: categories.first
-      }
     end
-    calculations[:category]
+    {
+      category: calculations[:category],
+      product: @data['name']
+    }
   end
 end
