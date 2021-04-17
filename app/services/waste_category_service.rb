@@ -12,7 +12,7 @@ class WasteCategoryService
   def determine
     default_category = WasteCategory.first
     calculations = {
-      min_levenshtein: 2,
+      min_levenshtein: 4,
       category: default_category
     }
     @keywords.each do |keyword|
@@ -20,7 +20,7 @@ class WasteCategoryService
         Levenshtein.distance(a.name, keyword) <=> Levenshtein.distance(b.name, keyword)
       end
       calc_min = Levenshtein.distance(categories.first.name, keyword)
-      next unless calc_min < calculations[:min_levenshtein]
+      next unless calc_min <= calculations[:min_levenshtein]
 
       calculations = {
         min_levenshtein: calc_min,

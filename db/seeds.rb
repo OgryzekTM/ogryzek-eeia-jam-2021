@@ -59,7 +59,10 @@ end
   'tetrapak',
   'sok',
   'śruba',
-  'gwóźdź'
+  'gwóźdź',
+  'napój',
+  'piwo',
+  'alkohol'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Metale i tworzywa sztuczne')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
@@ -81,7 +84,9 @@ end
   'słój',
   'słoik',
   'szklany',
-  'kosmetyk'
+  'kosmetyk',
+  'alkohol',
+  'butelka'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Szkło')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
@@ -136,4 +141,9 @@ end
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
 end
 
-WasteCollectionPoint.find_or_create_by(name: 'Test', x: '12.3', y: '-99.1', waste_category: WasteCategory.first)
+WasteCollectionPoint.find_or_create_by(
+  name: 'Skup złomu',
+  x: '12.3',
+  y: '-99.1',
+  waste_category: WasteCategory.find_by(name: 'Elektrośmieci')
+)
