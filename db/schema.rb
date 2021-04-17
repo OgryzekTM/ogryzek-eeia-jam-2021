@@ -10,23 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_143539) do
+ActiveRecord::Schema.define(version: 2021_04_17_144558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "waste_categories", force: :cascade do |t|
     t.string "name", null: false
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "waste_product_id"
+    t.index ["waste_product_id"], name: "index_waste_categories_on_waste_product_id"
   end
 
-  create_table "waste_category_product_samples", force: :cascade do |t|
+  create_table "waste_products", force: :cascade do |t|
     t.string "name"
+    t.string "description"
+    t.string "barcode"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "waste_category_id"
-    t.index ["waste_category_id"], name: "index_waste_category_product_samples_on_waste_category_id"
   end
 
 end
