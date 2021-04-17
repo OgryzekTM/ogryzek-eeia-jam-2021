@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WasteCollectionPointSerializer < ActiveModel::Serializer
-  attributes :name, :x, :y, :waste_category
+  attributes :id, :name, :x, :y, :waste_category
 
   def waste_category
     {

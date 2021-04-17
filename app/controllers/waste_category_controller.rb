@@ -2,7 +2,11 @@
 
 class WasteCategoryController < ApplicationController
   def index
-    determine_category_by_barcode(params[:barcode])
+    render json: serialize(WasteCategory.all, serializer: WasteCategorySerializer), status: :ok
+  end
+
+  def show
+    determine_category_by_barcode(params[:code])
     render json: serialize(@waste_category), status: :ok
   end
 

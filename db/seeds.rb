@@ -21,7 +21,7 @@ end
 
 [
   'Papier',
- 'Chusteczki'
+  'Chusteczki'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Papier')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)
