@@ -62,7 +62,10 @@ end
   'gwóźdź',
   'napój',
   'piwo',
-  'alkohol'
+  'alkohol',
+  'czipsy',
+  'chipsy',
+  'aluminium'
 ].each do |name|
   category = WasteCategory.find_by(name: 'Metale i tworzywa sztuczne')
   WasteKeyword.find_or_create_by(name: name, waste_category_id: category&.id)

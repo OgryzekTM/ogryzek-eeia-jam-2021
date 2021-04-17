@@ -8,7 +8,11 @@ class WasteCategoryController < ApplicationController
   def show
     determine_category_by_barcode(params[:code])
     determine_category_by_name(params[:name])
-    render json: serialize(@waste_category), status: :ok
+    if @waste_category.present?
+      render json: serialize(@waste_category), status: :ok
+    else
+      render json: { status: 'Unprocessable entity' }, status: :unprocessable_entity
+    end
   end
 
   private
@@ -23,6 +27,9 @@ class WasteCategoryController < ApplicationController
   def determine_category_by_barcode(barcode)
     if barcode.present?
       details = EanCodeService.new(barcode).details
+      if details['message'] == 'No such code in database'
+        return nil
+      end
       @waste_category = WasteCategoryService.new(details).determine
     end
   end
