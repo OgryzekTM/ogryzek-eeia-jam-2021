@@ -6,12 +6,17 @@ A first place winning application created for an [EEIA JAM 2021](http://dzienwee
 
 ## Setup
 
+Prepare data:
 ```
 rails db:create
 rails db:migrate
 rails db:seed
 ```
 
+Run server:
+```
+rails s
+```
 ## Endpoints
 
 ```
