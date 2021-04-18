@@ -9,7 +9,6 @@ class WasteCategoryController < ApplicationController
     determine_category_by_barcode(params[:code])
     determine_category_by_name(params[:name])
     if @waste_category.present?
-      p @waste_category
       render json: serialize(@waste_category).merge({ product: @detected_product }), status: :ok
     else
       render json: { status: 'Unprocessable entity' }, status: :unprocessable_entity

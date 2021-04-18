@@ -23,6 +23,13 @@ class WasteCategoryService
           calculations[:category] = key.waste_category
         end
       end
+      WasteCategory.all.each do |key|
+        calc_min = Levenshtein.distance(key.name, keyword)
+        if calc_min < calculations[:min_levenshtein]
+          calculations[:min_levenshtein] = calc_min
+          calculations[:category] = key
+        end
+      end
     end
     {
       category: calculations[:category],
