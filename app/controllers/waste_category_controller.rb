@@ -28,9 +28,8 @@ class WasteCategoryController < ApplicationController
   def determine_category_by_barcode(barcode)
     if barcode.present?
       details = EanCodeService.new(barcode).details
-      if details['message'] == 'No such code in database'
-        return nil
-      end
+      return nil if details['message'] == 'No such code in database'
+
       determined_data = WasteCategoryService.new(details).determine
       @detected_product = determined_data[:product]
       @waste_category = determined_data[:category]
